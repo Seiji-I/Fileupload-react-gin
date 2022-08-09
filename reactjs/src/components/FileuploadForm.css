@@ -1,0 +1,12 @@
+.btn-upload {
+  background-color: rgb(114, 233, 193);
+  color:rgb(12, 70, 37);
+  transition: 1.0s;
+  border-radius: 0.5rem;
+  font-size: 1.2rem;
+}
+.btn {
+  background-color: aliceblue;
+  color: black;
+  transition: 1.0s;
+}

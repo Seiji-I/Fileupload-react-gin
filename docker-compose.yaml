@@ -1,0 +1,42 @@
+version: "3.9"
+
+services:
+  react:
+    container_name: react
+    image: node:17-alpine
+    volumes:
+      - ./reactjs:/app
+    working_dir: /app
+    command: sh -c "npm install && npm start"
+    ports:
+      - '3000:3000'
+
+  gin:
+    container_name: gin
+    build: ./gin
+    tty: true
+    volumes:
+      - ./gin:/go/src
+    ports:
+      - 3333:3333
+  postgres:
+    container_name: postgres
+    image: postgres:14.0-alpine
+    command: postgres -c stats_temp_directory=/tmp
+    restart: always
+    ports:
+      - 5432:5432
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_HOST_AUTH_METHOD: trust
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    depends_on:
+      - postgres

@@ -1,0 +1,4 @@
+reactjs/node_modules
+postgres/*
+gin/uploads/*
+gin/tmp/
